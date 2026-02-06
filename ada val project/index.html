@@ -1,0 +1,553 @@
+﻿<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Für Ada – mein Herz, mein Zuhause</title>
+  <style>
+    :root {
+      --rose: #f6d5d1;
+      --blush: #f9e3de;
+      --cream: #fff8f2;
+      --red: #cc3a4b;
+      --deep-red: #9f1d2d;
+      --gold: #d8b36a;
+      --gold-glow: rgba(216,179,106,0.45);
+      --ink: #4c2b2f;
+      --soft-ink: #6b4a4f;
+      --card: rgba(255, 248, 242, 0.78);
+      --glass: rgba(255, 255, 255, 0.45);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: "Nunito", "Segoe UI", sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background-image:
+        radial-gradient(80vw 60vh at 15% -10%, rgba(246, 213, 209, 0.75), transparent),
+        radial-gradient(70vw 60vh at 85% 0%, rgba(255, 248, 242, 0.9), transparent),
+        linear-gradient(140deg, #fff8f2 0%, #f8d8d4 45%, #f0c2c6 100%);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 {
+      font-family: "Playfair Display", "Times New Roman", serif;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    p {
+      line-height: 1.7;
+      margin: 0;
+      color: var(--soft-ink);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    main {
+      position: relative;
+      z-index: 2;
+    }
+
+    .section {
+      padding: 120px 7vw 90px;
+      position: relative;
+    }
+
+    .section + .section {
+      padding-top: 90px;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      align-items: center;
+      padding-top: 140px;
+    }
+
+    .hero-card {
+      max-width: 720px;
+      padding: 48px 48px 40px;
+      background: var(--glass);
+      border-radius: 32px;
+      box-shadow: 0 20px 50px rgba(156, 48, 61, 0.2);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 4.5vw, 4rem);
+      color: var(--deep-red);
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      margin-bottom: 28px;
+    }
+
+    .primary-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      background: linear-gradient(120deg, #d83b55, #f06c6a);
+      color: white;
+      font-weight: 600;
+      box-shadow: 0 10px 24px rgba(216, 59, 85, 0.3);
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 15px 28px rgba(216, 59, 85, 0.4);
+    }
+
+    .floating-hearts span {
+      position: absolute;
+      font-size: clamp(1.2rem, 2.8vw, 2.4rem);
+      opacity: 0.45;
+      animation: float 12s infinite;
+    }
+
+    .floating-hearts span:nth-child(1) { left: 8%; top: 12%; animation-delay: 0s; }
+    .floating-hearts span:nth-child(2) { left: 78%; top: 8%; animation-delay: 2s; }
+    .floating-hearts span:nth-child(3) { left: 18%; top: 68%; animation-delay: 3.5s; }
+    .floating-hearts span:nth-child(4) { left: 82%; top: 70%; animation-delay: 5s; }
+    .floating-hearts span:nth-child(5) { left: 52%; top: 35%; animation-delay: 1s; }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.4; }
+      50% { transform: translateY(-20px) rotate(8deg); opacity: 0.8; }
+      100% { transform: translateY(0) rotate(0deg); opacity: 0.5; }
+    }
+
+    .section-title {
+      font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+      margin-bottom: 24px;
+      color: var(--deep-red);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 22px;
+    }
+
+    .timeline-item {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 24px 28px;
+      border-left: 4px solid var(--red);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(156, 48, 61, 0.12);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .timeline-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 34px rgba(156, 48, 61, 0.18);
+    }
+
+    .timeline-item::after {
+      content: "♥";
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      font-size: 1.4rem;
+      opacity: 0.3;
+    }
+
+    .timeline-date {
+      font-weight: 700;
+      color: var(--deep-red);
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+
+    .timeline-note {
+      font-size: 0.98rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .love-card {
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 10px 24px rgba(156, 48, 61, 0.12);
+      position: relative;
+    }
+
+    .love-card button {
+      margin-top: 16px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(216, 59, 85, 0.4);
+      background: white;
+      cursor: pointer;
+      color: var(--deep-red);
+      font-weight: 600;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .love-card button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 18px rgba(216, 59, 85, 0.2);
+    }
+
+    .love-message {
+      margin-top: 12px;
+      font-size: 0.95rem;
+      color: var(--soft-ink);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      min-height: 48px;
+    }
+
+    .love-message.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .surprise {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.65);
+      padding: 40px;
+      border-radius: 26px;
+      box-shadow: 0 18px 40px rgba(156, 48, 61, 0.18);
+    }
+
+    .surprise-btn {
+      margin-top: 16px;
+    }
+
+    .surprise-message {
+      margin-top: 24px;
+      font-size: 1.05rem;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .surprise-message.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .handwritten {
+      font-family: "Dancing Script", "Brush Script MT", cursive;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      background: rgba(255, 255, 255, 0.7);
+      padding: 32px 36px;
+      border-radius: 24px;
+      box-shadow: 0 14px 32px rgba(156, 48, 61, 0.12);
+    }
+
+    .footer {
+      text-align: center;
+      padding-bottom: 120px;
+    }
+
+    .pulse-heart {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 2.4rem;
+      color: var(--red);
+      animation: pulse 2s infinite;
+      filter: drop-shadow(0 0 10px rgba(216, 59, 85, 0.4));
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+      100% { transform: scale(1); }
+    }
+
+    .sparkles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.2) 70%);
+      box-shadow: 0 0 8px var(--gold-glow);
+      opacity: 0.4;
+      animation: sparkle 8s infinite;
+    }
+
+    @keyframes sparkle {
+      0% { transform: translateY(0) scale(1); opacity: 0.3; }
+      50% { opacity: 0.8; }
+      100% { transform: translateY(-120px) scale(1.2); opacity: 0; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .loader {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(140deg, #fff8f2, #f6d5d1 40%, #f1c2c6 100%);
+      display: grid;
+      place-items: center;
+      z-index: 10;
+      transition: opacity 0.6s ease;
+    }
+
+    .loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loader-heart {
+      font-size: 3rem;
+      animation: pulse 1.5s infinite;
+    }
+
+    @media (max-width: 720px) {
+      .hero-card {
+        padding: 36px 28px;
+      }
+
+      .section {
+        padding: 96px 6vw 70px;
+      }
+
+      .surprise {
+        padding: 28px 22px;
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Nunito:wght@300;400;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="loader" id="loader">
+    <div class="loader-heart">♥</div>
+  </div>
+
+  <div class="sparkles" id="sparkles"></div>
+
+  <main>
+    <section class="section hero" id="start">
+      <div class="floating-hearts" aria-hidden="true">
+        <span>♥</span>
+        <span>♥</span>
+        <span>♥</span>
+        <span>♥</span>
+        <span>♥</span>
+      </div>
+      <div class="hero-card reveal">
+        <h1>Für Ada – mein Herz, mein Zuhause ♥</h1>
+        <p>Seit dem 5. April 2025 ist alles schöner, weil es dich gibt.</p>
+        <button class="primary-btn" id="loveLetterBtn">Klick mich ♥</button>
+      </div>
+    </section>
+
+    <section class="section" id="story">
+      <h2 class="section-title reveal">Unsere Geschichte</h2>
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-date">5. April 2025 – Der Anfang von uns</div>
+          <div class="timeline-note">Der Moment, in dem mein Herz wusste, dass es bei dir Zuhause ist.</div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-date">Sommer 2025 – Erste gemeinsame Erinnerungen</div>
+          <div class="timeline-note">Platz für unsere Lieblingsmomente, Lachen und kleine Abenteuer.</div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-date">Heute – Immer noch verliebt</div>
+          <div class="timeline-note">Jeder Tag mit dir ist ein kleines Wunder, das ich nie selbstverständlich nehme.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="love">
+      <h2 class="section-title reveal">Warum ich dich liebe</h2>
+      <div class="cards">
+        <div class="love-card reveal">
+          <h3>Nr. 1</h3>
+          <button data-message="Weil dein Lächeln mein Zuhause ist.">Öffne ♥</button>
+          <div class="love-message"></div>
+        </div>
+        <div class="love-card reveal">
+          <h3>Nr. 2</h3>
+          <button data-message="Weil du bist wie du bist – einzigartig und wunderschön.">Öffne ♥</button>
+          <div class="love-message"></div>
+        </div>
+        <div class="love-card reveal">
+          <h3>Nr. 3</h3>
+          <button data-message="Weil du mich siehst, so wie ich wirklich bin.">Öffne ♥</button>
+          <div class="love-message"></div>
+        </div>
+        <div class="love-card reveal">
+          <h3>Nr. 4</h3>
+          <button data-message="Weil jeder Moment mit dir nach Zuhause riecht.">Öffne ♥</button>
+          <div class="love-message"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="surprise">
+      <div class="surprise reveal">
+        <h2 class="section-title">Interaktive Überraschung</h2>
+        <p>Ein kleines Geschenk – nur für dich.</p>
+        <button class="primary-btn surprise-btn" id="surpriseBtn">Eine kleine Überraschung für dich ♥</button>
+        <div class="surprise-message" id="surpriseMessage">
+          Ada, du bist mein Lieblingsmensch. Mit dir fühlt sich jeder Tag wie ein Geschenk an. Ich liebe dich.
+        </div>
+        <audio id="bgm" loop>
+          <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_3f9c9e0da0.mp3?filename=soft-piano-ambient-10657.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </section>
+
+    <section class="section" id="letter">
+      <h2 class="section-title reveal">Liebesbotschaft</h2>
+      <div class="handwritten reveal">
+Ada,<br /><br />
+mit dir fühlt sich jeder Tag wie ein Geschenk an – nicht, weil alles immer perfekt ist, sondern weil es echt ist.  
+Wir beide wissen, dass wir Fehler haben. Wir tragen unsere Unsicherheiten, unsere Zweifel, unsere Ecken und Kanten mit uns.  
+Manchmal stolpern wir darüber, manchmal verletzen wir uns, manchmal verstehen wir uns nicht sofort.  
+Aber genau das macht uns menschlich. Und genau das macht meine Liebe zu dir so tief.<br /><br />
+
+Ich liebe dich nicht trotz deiner Fehler.  
+Ich liebe dich mit ihnen.  
+Mit allem, was dich ausmacht – deinen Stärken, deinen Schwächen, deinen leisen Momenten und deinem lauten Lachen.  
+Ich akzeptiere dich nicht nur, ich entscheide mich jeden Tag neu für dich. Für alles, was du bist und alles, was du noch wirst.<br /><br />
+
+Du musst bei mir nichts verstecken, nichts schönreden, nichts beweisen.  
+Du darfst müde sein, unsicher sein, verletzlich sein.  
+Ich sehe dich. Ich halte dich. Und ich bleibe.<br /><br />
+
+Seit dem 5. April 2025 bist du ein Teil meines Lebens, den ich nicht mehr missen möchte.  
+Mit dir möchte ich wachsen, lernen, Fehler machen und daran stärker werden – zusammen.  
+Nicht perfekt, sondern ehrlich.  
+Nicht fehlerfrei, sondern voller Liebe.<br /><br />
+
+Ada, ich liebe dich so, wie du bist.  
+Mit allem, was zu dir gehört.
+</div>
+
+    </section>
+
+    <section class="section footer" id="closing">
+      <h2 class="section-title reveal">Happy Valentine’s Day, Ada ♥</h2>
+      <p class="reveal">~Dein Antonio</p>
+      <div class="pulse-heart">♥</div>
+    </section>
+  </main>
+
+  <script>
+    const loader = document.getElementById("loader");
+    window.addEventListener("load", () => {
+      setTimeout(() => loader.classList.add("hidden"), 700);
+    });
+
+    const reveals = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+    reveals.forEach((el) => observer.observe(el));
+
+    document.querySelectorAll(".love-card button").forEach((button) => {
+      button.addEventListener("click", () => {
+        const message = button.dataset.message;
+        const messageBox = button.parentElement.querySelector(".love-message");
+        messageBox.textContent = message;
+        messageBox.classList.add("show");
+      });
+    });
+
+    const surpriseBtn = document.getElementById("surpriseBtn");
+    const surpriseMessage = document.getElementById("surpriseMessage");
+    const bgm = document.getElementById("bgm");
+
+    surpriseBtn.addEventListener("click", () => {
+      surpriseMessage.classList.add("show");
+      spawnHearts();
+      if (bgm.paused) {
+        bgm.volume = 0.35;
+        bgm.play().catch(() => {});
+      }
+    });
+
+    const loveLetterBtn = document.getElementById("loveLetterBtn");
+    loveLetterBtn.addEventListener("click", () => {
+      document.getElementById("story").scrollIntoView({ behavior: "smooth" });
+    });
+
+    function spawnHearts() {
+      const container = document.body;
+      for (let i = 0; i < 14; i++) {
+        const heart = document.createElement("div");
+        heart.textContent = "♥";
+        heart.style.position = "fixed";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.bottom = "-10px";
+        heart.style.fontSize = 16 + Math.random() * 18 + "px";
+        heart.style.color = "#d83b55";
+        heart.style.opacity = "0.8";
+        heart.style.transition = "transform 3s ease, opacity 3s ease";
+        heart.style.zIndex = "3";
+        container.appendChild(heart);
+        requestAnimationFrame(() => {
+          heart.style.transform = `translateY(-120vh) translateX(${(Math.random() - 0.5) * 80}px)`;
+          heart.style.opacity = "0";
+        });
+        setTimeout(() => heart.remove(), 3200);
+      }
+    }
+
+    const sparkleContainer = document.getElementById("sparkles");
+    for (let i = 0; i < 24; i++) {
+      const spark = document.createElement("div");
+      spark.className = "sparkle";
+      spark.style.left = Math.random() * 100 + "vw";
+      spark.style.top = 60 + Math.random() * 80 + "vh";
+      spark.style.animationDelay = Math.random() * 8 + "s";
+      spark.style.animationDuration = 6 + Math.random() * 6 + "s";
+      sparkleContainer.appendChild(spark);
+    }
+  </script>
+</body>
+</html>
